@@ -1,0 +1,79 @@
+<style>
+    body {
+        background: linear-gradient(white, yellow); 
+    }
+    button {
+        margin-top: 40%;
+        margin-left: 20%;
+        font-family: cursive; 
+        color: white;
+        background: radial-gradient(lightblue, blue);
+        font-size: xx-large;
+    }
+    button:hover {        
+        background: radial-gradient(white, cyan);
+        color: red;
+        cursor: pointer;
+    }
+    section {
+        margin-left: 20%;
+        border-image: linear-gradient(white, gray);
+        width: 800px;
+        height: 90%;
+        border: 10px solid orange;
+        background: linear-gradient(white, orange);
+    }
+    #fake-loading {
+        width: 100svw;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: lightgray;
+    }
+    img {
+        margin-left: 30%;
+        margin-top: 5%;
+    }
+    audio {
+        position: absolute;
+        top: 40px;
+        left: 200px;
+    }
+</style>
+<title>My Dog WebPage!</title>
+<body>
+    <audio style="display: none" loop controls src="sonic-exe.mp3"></audio>
+    <section>
+        <img width="400" height="50" src="title.gif"><br>
+        <button id="dog">Click To See Funny Dog!</button>
+    </section>
+    <div id="fake-loading" style="height: 100svh"></div>
+</body>
+<script>
+    const fakeLoading = document.querySelector('#fake-loading');
+    for (i = 0;i<10;i++) {
+        setTimeout(()=>{
+            fakeLoading.style.height = parseInt(fakeLoading.style.height.replace('svh', '')) - (Math.random() * 30) + 'svh';
+        }, 500 + i * (Math.random() * 500))
+    }
+    setTimeout(()=>{
+        fakeLoading.remove();
+    },2000);
+    const dog = document.querySelector('#dog');
+    dog.addEventListener('click', ()=>{
+        dog.textContent = 'HAHA I LIED IS SMILE DOG';
+        document.querySelector('audio').style.display = 'block';
+        document.querySelector('audio').play();
+        document.body.style.filter = 'brightness(60%)';
+        window.open('popup.html', '_blank', spreadTheWord());
+        document.body.style.background = 'black';
+        setInterval(()=>{
+            if (Math.random() > 0.5) {
+                spreadTheWord();
+            }
+        }, 2000)
+    })
+    function spreadTheWord() {
+        window.open('popup.html', '_blank', `popup=true,left=${Math.random() * screen.availWidth},top=${Math.random() * screen.availHeight},width=240,height=300`)
+    }
+</script>
